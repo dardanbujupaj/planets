@@ -4,6 +4,7 @@ class_name Planet
 export var mass: float = 1.00 setget _set_mass
 export var velocity: Vector3 = Vector3()
 export var color: Color = Color.white setget _set_color
+export var id: String = ""
 
 
 const DENSITY = 0.1
