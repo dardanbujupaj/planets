@@ -1,0 +1,5 @@
+= Planets
+
+A simulation game about planets and gravity.
+
+This is a remake of the old https://github.com/dardanbujupaj/planets/tree/legacy-js[javascript version] in Godot.
