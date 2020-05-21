@@ -45,3 +45,35 @@ func _on_Planet_area_entered(area):
 		velocity = (area.velocity * area.mass + velocity * mass) / new_mass
 		_set_mass(new_mass)
 		area.queue_free()
+
+
+func save_dict():
+	var planet_dict = {
+			"translation": {
+				"x": translation.x,
+				"y": translation.y,
+				"z": translation.z,
+				},
+			"mass": mass,
+			"velocity": {
+				"x": velocity.x,
+				"y": velocity.y,
+				"z":  velocity.z,
+				},
+			"color": {
+				"r": color.r,
+				"g": color.g,
+				"b": color.b,
+				"a": color.a,
+				},
+			"id": id
+		}
+	return  planet_dict
+
+# load data from dict
+func load_dict(planet_dict):
+	translation = Vector3(planet_dict["translation"].x, planet_dict["translation"].y, planet_dict["translation"].z)
+	velocity = Vector3(planet_dict["velocity"].x, planet_dict["velocity"].y, planet_dict["velocity"].z)
+	color = Color(planet_dict["color"].r, planet_dict["color"].g, planet_dict["color"].b, planet_dict["color"].a)
+	mass = planet_dict.mass
+	id = planet_dict.id

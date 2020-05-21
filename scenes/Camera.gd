@@ -9,6 +9,7 @@ signal stop_creating_planet
 var radius = 200 setget _set_radius
 var inclination = PI / 2 setget _set_inclination
 var azimuth = PI / 2
+var current_look_at = Vector3()
 
 var follow_node = null
 
@@ -36,7 +37,7 @@ func _unhandled_input(event):
 		$RayCast.set_cast_to(project_local_ray_normal(event.position) * 10000)
 	
 	if $RayCast.get_collider() != null:
-		($RayCast.get_collider() as Planet).get_node("CSGSphere").material.next_pass = preload("res://Outline.tres")
+		($RayCast.get_collider() as Planet).get_node("CSGSphere").material.next_pass = preload("res://scenes/Outline.tres")
 	
 	if Input.is_action_just_pressed("select"):
 		var collider = $RayCast.get_collider()
@@ -69,7 +70,7 @@ func _set_radius(new_value):
 func _ready():
 	pass # Replace with function body.
 
-var current_look_at = Vector3()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# calculate relative camera position from rotation an distance
@@ -90,3 +91,30 @@ func _process(delta):
 	look_at_from_position(current_look_at + camera_position, current_look_at, up_vector)
 	#else:
 	#	$Camera.look_at_from_position($NBodySimulation.next_center + camera_position, $NBodySimulation.next_center, up_vector)
+
+
+func save_dict():
+	return {
+		'radius': radius,
+		'inclination': inclination,
+		'azimuth': azimuth,
+		'current_look_at': {
+			'x': current_look_at.x,
+			'y': current_look_at.y,
+			'z': current_look_at.z
+		}
+		# TODO save follow node
+	}
+	
+func load_dict(dict):
+	radius = dict['radius']
+	inclination = dict['inclination']
+	azimuth = dict['azimuth']
+	
+	current_look_at = Vector3(
+		dict['current_look_at'].x,
+		dict['current_look_at'].y,
+		dict['current_look_at'].z
+	)
+	# TODO load follow node
+	follow_node = null

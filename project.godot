@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Planet",
 "language": "GDScript",
-"path": "res://Planet.gd"
+"path": "res://scenes/Planet.gd"
 } ]
 _global_script_class_icons={
 "Planet": ""
@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="planets"
-run/main_scene="res://TestScene.tscn"
+run/main_scene="res://scenes/Universe.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -67,7 +67,17 @@ pause={
 }
 screenshot={
 "deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
+save={
+"deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+load={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -85,4 +95,5 @@ translations=PoolStringArray( "res://localization/translation.en.translation" )
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/msaa=4
 environment/default_environment="res://default_env.tres"
